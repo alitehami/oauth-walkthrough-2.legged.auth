@@ -23,16 +23,18 @@
 var express = require('express');           // For web server
 var Axios = require('axios');               // A Promised base http client
 var bodyParser = require('body-parser');    // Receive JSON format
+require('dotenv').config();
 
 // Set up Express web server
 var app = express();
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/www'));
+const PORT = process.env.PORT || 3000;
 
 // This is for web server to start listening to port 3000
-app.set('port', 3000);
+app.set('port', PORT);
 var server = app.listen(app.get('port'), function () {
-    console.log('Server listening on port ' + server.address().port);
+    console.log('Server listening on port ' + `http://localhost:${server.address().port}`);
 });
 
 //-------------------------------------------------------------------
